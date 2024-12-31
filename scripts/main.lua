@@ -6,6 +6,7 @@ local soundmanager
 local entitymanager
 local statemanager
 
+local hand
 local slime
 
 function setup()
@@ -26,6 +27,10 @@ function setup()
 
   io:connect()
 
+  -- hand = entitymanager:spawn("hand")
+  -- hand.action:set("idle")
+  -- hand.placement:set(0, 0)
+
   slime = entitymanager:spawn("slime")
   slime.action:set("idle")
   slime.placement:set(0, 0)
@@ -34,7 +39,14 @@ function setup()
 end
 
 function loop()
+  -- hand.velocity.x, hand.velocity.y = 0, 0
   slime.velocity.x, slime.velocity.y = 0, 0
+
+  -- if statemanager.player[1]:event(Event.down) then
+  --   print("down")
+  -- end
+
+  statemanager.player[4]:event()
 
   if statemanager:is_keydown(KeyEvent.left) then
     slime.reflection:set(Reflection.horizontal)
