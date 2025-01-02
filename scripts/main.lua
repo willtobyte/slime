@@ -46,21 +46,23 @@ function loop()
   --   print("down")
   -- end
 
-  statemanager.player[4]:event()
-
-  if statemanager:is_keydown(KeyEvent.left) then
-    slime.reflection:set(Reflection.horizontal)
-    slime.velocity.x = -80
-  elseif statemanager:is_keydown(KeyEvent.right) then
-    slime.reflection:unset()
-    slime.velocity.x = 80
+  if statemanager:player(0):on(Controller.up) then
+    print("UP!")
   end
 
-  if statemanager:is_keydown(KeyEvent.up) then
-    slime.velocity.y = -80
-  elseif statemanager:is_keydown(KeyEvent.down) then
-    slime.velocity.y = 80
-  end
+  -- if statemanager:is_keydown(KeyEvent.left) then
+  --   slime.reflection:set(Reflection.horizontal)
+  --   slime.velocity.x = -80
+  -- elseif statemanager:is_keydown(KeyEvent.right) then
+  --   slime.reflection:unset()
+  --   slime.velocity.x = 80
+  -- end
+
+  -- if statemanager:is_keydown(KeyEvent.up) then
+  --   slime.velocity.y = -80
+  -- elseif statemanager:is_keydown(KeyEvent.down) then
+  --   slime.velocity.y = 80
+  -- end
 
   local action = "idle"
   if slime.velocity.y > 0 then
