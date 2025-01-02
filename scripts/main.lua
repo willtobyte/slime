@@ -46,8 +46,8 @@ function loop()
   --   print("down")
   -- end
 
-  if statemanager:player(0):on(Controller.up) then
-    print("UP!")
+  if statemanager:player(Player.one):on(Controller.up) then
+    slime.velocity.y = -80
   end
 
   -- if statemanager:is_keydown(KeyEvent.left) then
