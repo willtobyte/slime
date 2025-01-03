@@ -7,6 +7,8 @@ local entitymanager
 local statemanager
 local timemanager
 
+local keystate = {}
+
 local hand
 local slime
 
@@ -35,7 +37,7 @@ function setup()
   slime.placement:set(0, 0)
 
   hand = entitymanager:spawn("hand")
-  hand.action:set("attack")
+  hand.action:set("idle")
   hand.placement:set(0, 0)
   hand:on_animationfinished(function(self)
     self.action:set("idle")
@@ -45,10 +47,6 @@ function setup()
 end
 
 function loop()
-  if slime.kv:get("stiff") then
-    return
-  end
-
   hand.velocity.x, hand.velocity.y = 0, 0
   slime.velocity.x, slime.velocity.y = 0, 0
   slime.reflection:unset()
@@ -76,6 +74,26 @@ function loop()
   end
 
   slime.action:set(action)
+
+  if statemanager:player(Player.two):on(Controller.up) then
+    hand.velocity.y = -80
+  elseif statemanager:player(Player.two):on(Controller.down) then
+    hand.velocity.y = 80
+  end
+  if statemanager:player(Player.two):on(Controller.left) then
+    hand.velocity.x = -80
+  elseif statemanager:player(Player.two):on(Controller.right) then
+    hand.velocity.x = 80
+  end
+
+  if statemanager:player(Player.two):on(Controller.square) then
+    if not keystate[Controller.square] then
+      keystate[Controller.square] = true
+      hand.action:set("attack")
+    else
+      keystate[Controller.square] = false
+    end
+  end
 end
 
 function run()
