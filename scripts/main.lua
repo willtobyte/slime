@@ -5,6 +5,7 @@ local scenemanager
 local soundmanager
 local entitymanager
 local statemanager
+local timemanager
 
 local hand
 local slime
@@ -20,49 +21,50 @@ function setup()
       :create()
 
   io = Socket.new()
+  io:connect()
+
   scenemanager = engine:scenemanager()
   soundmanager = engine:soundmanager()
   entitymanager = engine:entitymanager()
   statemanager = engine:statemanager()
 
-  io:connect()
-
-  -- hand = entitymanager:spawn("hand")
-  -- hand.action:set("idle")
-  -- hand.placement:set(0, 0)
+  timemanager = TimeManager.new()
 
   slime = entitymanager:spawn("slime")
   slime.action:set("idle")
   slime.placement:set(0, 0)
 
+  hand = entitymanager:spawn("hand")
+  hand.action:set("attack")
+  hand.placement:set(0, 0)
+  hand:on_animationfinished(function(self)
+    self.action:set("idle")
+  end)
+
   scenemanager:set("default")
 end
 
 function loop()
-  -- hand.velocity.x, hand.velocity.y = 0, 0
-  slime.velocity.x, slime.velocity.y = 0, 0
+  if slime.kv:get("stiff") then
+    return
+  end
 
-  -- if statemanager.player[1]:event(Event.down) then
-  --   print("down")
-  -- end
+  hand.velocity.x, hand.velocity.y = 0, 0
+  slime.velocity.x, slime.velocity.y = 0, 0
+  slime.reflection:unset()
 
   if statemanager:player(Player.one):on(Controller.up) then
     slime.velocity.y = -80
+  elseif statemanager:player(Player.one):on(Controller.down) then
+    slime.velocity.y = 80
   end
 
-  -- if statemanager:is_keydown(KeyEvent.left) then
-  --   slime.reflection:set(Reflection.horizontal)
-  --   slime.velocity.x = -80
-  -- elseif statemanager:is_keydown(KeyEvent.right) then
-  --   slime.reflection:unset()
-  --   slime.velocity.x = 80
-  -- end
-
-  -- if statemanager:is_keydown(KeyEvent.up) then
-  --   slime.velocity.y = -80
-  -- elseif statemanager:is_keydown(KeyEvent.down) then
-  --   slime.velocity.y = 80
-  -- end
+  if statemanager:player(Player.one):on(Controller.left) then
+    slime.velocity.x = -80
+    slime.reflection:set(Reflection.horizontal)
+  elseif statemanager:player(Player.one):on(Controller.right) then
+    slime.velocity.x = 80
+  end
 
   local action = "idle"
   if slime.velocity.y > 0 then
