@@ -50,12 +50,55 @@ function setup()
   hand = entitymanager:spawn("hand")
   hand.action:set("idle")
   hand.placement:set(0, 0)
-  hand:on_animationfinished(function(self)
-    hand.action:set("idle")
+  hand:on_collision("slime", function(self)
+    if hand.action:get() ~= "attack" then
+      return
+    end
+
     slime.action:set("stun")
-    timemanager:singleshot(2000, function()
+
+    local position = slime.placement:get()
+    local sx, sy = position.x, position.y
+
+    local distance = math.random(3, 9) * 10
+
+    local angle = math.random() * (2 * math.pi)
+
+    local nx = sx + distance * math.cos(angle)
+    local ny = sy + distance * math.sin(angle)
+
+    slime.placement:set(nx, ny)
+
+    timemanager:singleshot(3000, function()
       slime.action:set("idle")
     end)
+  end)
+  -- end)
+  --   slime.action:set("stun")
+
+  --   local position = slime.placement:get()
+  --   local sx, sy = position.x, position.y
+
+  --   local distance = math.random(3, 9) * 10
+
+  --   local angle = math.random() * (2 * math.pi)
+
+  --   local nx = sx + distance * math.cos(angle)
+  --   local ny = sy + distance * math.sin(angle)
+
+  --   slime.placement:set(nx, ny)
+
+  --   timemanager:singleshot(3000, function()
+  --     slime.action:set("idle")
+  --   end)
+  -- end)
+
+  hand:on_animationfinished(function(self)
+    hand.action:set("idle")
+    -- slime.action:set("stun")
+    -- timemanager:singleshot(2000, function()
+    --   slime.action:set("idle")
+    -- end)
   end)
 
   scenemanager:set("default")
