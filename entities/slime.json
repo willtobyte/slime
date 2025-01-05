@@ -7,6 +7,12 @@
 	},
 	"animations": {
 		"down": {
+			"hitbox": {
+				"x": 96,
+				"y": 96,
+				"width": 64,
+				"height": 64
+			},
 			"frames": [
 				{
 					"rect": {
@@ -115,6 +121,12 @@
 			]
 		},
 		"idle": {
+			"hitbox": {
+				"x": 96,
+				"y": 96,
+				"width": 64,
+				"height": 64
+			},
 			"frames": [
 				{
 					"rect": {
@@ -275,6 +287,12 @@
 			]
 		},
 		"side": {
+			"hitbox": {
+				"x": 96,
+				"y": 96,
+				"width": 64,
+				"height": 64
+			},
 			"frames": [
 				{
 					"rect": {
@@ -625,6 +643,12 @@
 			]
 		},
 		"up": {
+			"hitbox": {
+				"x": 96,
+				"y": 96,
+				"width": 64,
+				"height": 64
+			},
 			"frames": [
 				{
 					"rect": {

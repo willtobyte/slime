@@ -1,16 +1,21 @@
 ---@diagnostic disable: undefined-global, undefined-field, lowercase-global
 
 local io
+local fontfactory
 local scenemanager
 local soundmanager
 local entitymanager
 local statemanager
 local timemanager
+local overlay
 
 local keystate = {}
+local ignore = { stun = true }
 
 local hand
 local slime
+
+local score
 
 function setup()
   _G.engine = EngineFactory.new()
@@ -25,10 +30,16 @@ function setup()
   io = Socket.new()
   io:connect()
 
+  entitymanager = engine:entitymanager()
+  fontfactory = engine:fontfactory()
   scenemanager = engine:scenemanager()
   soundmanager = engine:soundmanager()
-  entitymanager = engine:entitymanager()
   statemanager = engine:statemanager()
+  overlay = engine:overlay()
+
+  score = overlay:create(WidgetType.label)
+  score.font = fontfactory:get("fixedsys")
+  score:set("Score 9999", 540, 10)
 
   timemanager = TimeManager.new()
 
@@ -40,7 +51,11 @@ function setup()
   hand.action:set("idle")
   hand.placement:set(0, 0)
   hand:on_animationfinished(function(self)
-    self.action:set("idle")
+    hand.action:set("idle")
+    slime.action:set("stun")
+    timemanager:singleshot(2000, function()
+      slime.action:set("idle")
+    end)
   end)
 
   scenemanager:set("default")
@@ -50,6 +65,10 @@ function loop()
   hand.velocity.x, hand.velocity.y = 0, 0
   slime.velocity.x, slime.velocity.y = 0, 0
   slime.reflection:unset()
+
+  if ignore[slime.action:get()] then
+    return
+  end
 
   if statemanager:player(Player.one):on(Controller.up) then
     slime.velocity.y = -80

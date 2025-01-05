@@ -181,6 +181,12 @@
 			]
 		},
 		"idle": {
+			"hitbox": {
+				"x": 200,
+				"y": 180,
+				"width": 64,
+				"height": 64
+			},
 			"frames": [
 				{
 					"duration": 200,
