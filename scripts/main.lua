@@ -44,7 +44,7 @@ function setup()
   timemanager = TimeManager.new()
 
   slime = entitymanager:spawn("slime")
-  slime.action:set("idle")
+  slime.action:set("splaft")
   slime.placement:set(0, 0)
 
   hand = entitymanager:spawn("hand")
@@ -155,6 +155,12 @@ function loop()
     else
       keystate[Controller.square] = false
     end
+  end
+
+  if collectgarbage("count") / 1024 > 8 then
+    collectgarbage("collect")
+  else
+    collectgarbage("step", 8)
   end
 end
 
