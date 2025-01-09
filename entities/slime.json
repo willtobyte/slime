@@ -403,6 +403,7 @@
 		"splaft": {
 			"frames": [
 				{
+					"singleshoot": true,
 					"rect": {
 						"x": 78,
 						"y": 317,
@@ -537,6 +538,7 @@
 		"stun": {
 			"frames": [
 				{
+					"singleshoot": true,
 					"rect": {
 						"x": 79,
 						"y": 714,

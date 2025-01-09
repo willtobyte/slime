@@ -1,6 +1,7 @@
 ---@diagnostic disable: undefined-global, undefined-field, lowercase-global
 
 local io
+local postalservice
 local fontfactory
 local scenemanager
 local soundmanager
@@ -10,12 +11,51 @@ local timemanager
 local overlay
 
 local keystate = {}
-local ignore = { stun = true }
+local ignore = { stun = true, splaft = true }
 
 local hand
 local slime
 
 local score
+
+local slime_seq = {
+  stun = "idle",
+  splaft = "stun"
+}
+
+math.randomseed(os.time())
+
+local behaviors = {
+  hit = function(self)
+    -- if #explosion_pool > 0 then
+    --   local explosion = table.remove(explosion_pool)
+    --   local offset_x = (math.random(-2, 2)) * 30
+    --   local offset_y = (math.random(-2, 2)) * 30
+
+    --   explosion.placement:set(octopus.x + offset_x, player.y + offset_y - 200)
+    --   explosion.action:set("default")
+
+    --   timemanager:singleshot(math.random(100, 400), function()
+    --     if #jet_pool > 0 then
+    --       local jet = table.remove(jet_pool)
+    --       local x = 980
+    --       local base = 812
+    --       local range = 100
+    --       local step = 20
+
+    --       local y = base + step * math.random(-range // step, range // step)
+
+    --       jet.placement:set(x, y)
+    --       jet.action:set("default")
+    --       jet.velocity.x = -200 * math.random(3, 6)
+    --     end
+    --   end)
+    -- end
+
+    -- self.action:set("attack")
+    -- self.kv:set("life", self.kv:get("life") - 1)
+  end
+}
 
 function setup()
   _G.engine = EngineFactory.new()
@@ -29,6 +69,8 @@ function setup()
 
   io = Socket.new()
   io:connect()
+
+  postalservice = PostalService.new()
 
   entitymanager = engine:entitymanager()
   fontfactory = engine:fontfactory()
@@ -44,8 +86,20 @@ function setup()
   timemanager = TimeManager.new()
 
   slime = entitymanager:spawn("slime")
-  slime.action:set("splaft")
+  slime.action:set("idle")
   slime.placement:set(0, 0)
+  slime:on_mail(function(self, message)
+    local behavior = behaviors[message]
+    if behavior then
+      behavior(self)
+    end
+  end)
+  slime:on_animationfinished(function(self, name)
+    local next = slime_seq[name]
+    if next then
+      slime.action:set(next)
+    end
+  end)
 
   hand = entitymanager:spawn("hand")
   hand.action:set("idle")
@@ -55,7 +109,15 @@ function setup()
       return
     end
 
-    slime.action:set("stun")
+    if ({
+          stun = true,
+          splaft = true
+        })
+        [slime.action:get()] then
+      return
+    end
+
+    slime.action:set("splaft")
 
     local position = slime.placement:get()
     local sx, sy = position.x, position.y
@@ -68,37 +130,10 @@ function setup()
     local ny = sy + distance * math.sin(angle)
 
     slime.placement:set(nx, ny)
-
-    timemanager:singleshot(3000, function()
-      slime.action:set("idle")
-    end)
   end)
-  -- end)
-  --   slime.action:set("stun")
-
-  --   local position = slime.placement:get()
-  --   local sx, sy = position.x, position.y
-
-  --   local distance = math.random(3, 9) * 10
-
-  --   local angle = math.random() * (2 * math.pi)
-
-  --   local nx = sx + distance * math.cos(angle)
-  --   local ny = sy + distance * math.sin(angle)
-
-  --   slime.placement:set(nx, ny)
-
-  --   timemanager:singleshot(3000, function()
-  --     slime.action:set("idle")
-  --   end)
-  -- end)
 
   hand:on_animationfinished(function(self)
     hand.action:set("idle")
-    -- slime.action:set("stun")
-    -- timemanager:singleshot(2000, function()
-    --   slime.action:set("idle")
-    -- end)
   end)
 
   scenemanager:set("default")
@@ -148,19 +183,13 @@ function loop()
     hand.velocity.x = 80
   end
 
-  if statemanager:player(Player.two):on(Controller.square) then
-    if not keystate[Controller.square] then
-      keystate[Controller.square] = true
+  if statemanager:player(Player.one):on(Controller.cross) then
+    if not keystate[Controller.cross] then
+      keystate[Controller.cross] = true
       hand.action:set("attack")
     else
-      keystate[Controller.square] = false
+      keystate[Controller.cross] = false
     end
-  end
-
-  if collectgarbage("count") / 1024 > 8 then
-    collectgarbage("collect")
-  else
-    collectgarbage("step", 8)
   end
 end
 
