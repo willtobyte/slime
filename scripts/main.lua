@@ -183,7 +183,7 @@ function loop()
     hand.velocity.x = 80
   end
 
-  if statemanager:player(Player.one):on(Controller.cross) then
+  if statemanager:player(Player.two):on(Controller.cross) then
     if not keystate[Controller.cross] then
       keystate[Controller.cross] = true
       hand.action:set("attack")
