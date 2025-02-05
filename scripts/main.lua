@@ -11,7 +11,7 @@ local timemanager
 local overlay
 
 local keystate = {}
-local ignore = { stun = true, splaft = true }
+local ignore = { stun = true, splaft = true, injury = true }
 
 local hand
 local slime
@@ -105,7 +105,7 @@ function setup()
   hand.action:set("idle")
   hand.placement:set(0, 0)
   hand:on_collision("slime", function(self)
-    if hand.action:get() ~= "attack" then
+    if hand.action:get() ~= "attack" or hand.action:get() == "injury" then
       return
     end
 
@@ -134,6 +134,7 @@ function setup()
 
   hand:on_animationfinished(function(self)
     hand.action:set("idle")
+    slime.action:set("idle")
   end)
 
   scenemanager:set("default")
@@ -144,7 +145,11 @@ function loop()
   slime.velocity.x, slime.velocity.y = 0, 0
   slime.reflection:unset()
 
-  if ignore[slime.action:get()] then
+  if statemanager:collides(slime, hand) then
+    print(">>> slime & hand collides")
+  end
+
+  if ignore[slime.action:get()] or ignore[hand.action:get()] then
     return
   end
 
@@ -159,6 +164,17 @@ function loop()
     slime.reflection:set(Reflection.horizontal)
   elseif statemanager:player(Player.one):on(Controller.right) then
     slime.velocity.x = 80
+  end
+
+  if statemanager:player(Player.one):on(Controller.cross) then
+    if not keystate[1] then
+      keystate[1] = true
+      print("HIT!!!!")
+      hand.action:set("injury")
+      slime.action:unset()
+    else
+      keystate[1] = false
+    end
   end
 
   local action = "idle"
