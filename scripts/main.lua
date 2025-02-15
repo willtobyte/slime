@@ -1,13 +1,10 @@
 ---@diagnostic disable: undefined-global, undefined-field, lowercase-global
 
-local io
-local postalservice
 local fontfactory
 local scenemanager
 local soundmanager
 local entitymanager
 local statemanager
-local timemanager
 local overlay
 
 local keystate = {}
