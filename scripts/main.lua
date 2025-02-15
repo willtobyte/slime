@@ -23,40 +23,6 @@ local slime_seq = {
   splaft = "stun"
 }
 
-math.randomseed(os.time())
-
-local behaviors = {
-  hit = function(self)
-    -- if #explosion_pool > 0 then
-    --   local explosion = table.remove(explosion_pool)
-    --   local offset_x = (math.random(-2, 2)) * 30
-    --   local offset_y = (math.random(-2, 2)) * 30
-
-    --   explosion.placement:set(octopus.x + offset_x, player.y + offset_y - 200)
-    --   explosion.action:set("default")
-
-    --   timemanager:singleshot(math.random(100, 400), function()
-    --     if #jet_pool > 0 then
-    --       local jet = table.remove(jet_pool)
-    --       local x = 980
-    --       local base = 812
-    --       local range = 100
-    --       local step = 20
-
-    --       local y = base + step * math.random(-range // step, range // step)
-
-    --       jet.placement:set(x, y)
-    --       jet.action:set("default")
-    --       jet.velocity.x = -200 * math.random(3, 6)
-    --     end
-    --   end)
-    -- end
-
-    -- self.action:set("attack")
-    -- self.kv:set("life", self.kv:get("life") - 1)
-  end
-}
-
 function setup()
   _G.engine = EngineFactory.new()
       :with_title("Slime")
@@ -66,11 +32,6 @@ function setup()
       :with_gravity(9.8)
       :with_fullscreen(false)
       :create()
-
-  io = Socket.new()
-  io:connect()
-
-  postalservice = PostalService.new()
 
   entitymanager = engine:entitymanager()
   fontfactory = engine:fontfactory()
@@ -82,8 +43,6 @@ function setup()
   score = overlay:create(WidgetType.label)
   score.font = fontfactory:get("fixedsys")
   score:set("Score 9999", 540, 10)
-
-  timemanager = TimeManager.new()
 
   slime = entitymanager:spawn("slime")
   slime.action:set("idle")
