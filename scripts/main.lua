@@ -104,33 +104,6 @@ function setup()
   hand = entitymanager:spawn("hand")
   hand.action:set("idle")
   hand.placement:set(0, 0)
-  hand:on_collision("slime", function(self)
-    if hand.action:get() ~= "attack" or hand.action:get() == "injury" then
-      return
-    end
-
-    if ({
-          stun = true,
-          splaft = true
-        })
-        [slime.action:get()] then
-      return
-    end
-
-    slime.action:set("splaft")
-
-    local position = slime.placement:get()
-    local sx, sy = position.x, position.y
-
-    local distance = math.random(3, 9) * 10
-
-    local angle = math.random() * (2 * math.pi)
-
-    local nx = sx + distance * math.cos(angle)
-    local ny = sy + distance * math.sin(angle)
-
-    slime.placement:set(nx, ny)
-  end)
 
   hand:on_animationfinished(function(self)
     hand.action:set("idle")
@@ -141,17 +114,25 @@ function setup()
 end
 
 function loop()
-  hand.velocity.x, hand.velocity.y = 0, 0
-  slime.velocity.x, slime.velocity.y = 0, 0
-  slime.reflection:unset()
-
   if statemanager:collides(slime, hand) then
-    print(">>> slime & hand collides")
+    if statemanager:player(Player.one):on(Controller.cross) then
+      if not keystate[Player.one] then
+        keystate[Player.one] = true
+        hand.action:set("attack")
+        slime.action:set("splaft")
+      else
+        keystate[Player.one] = false
+      end
+    end
   end
 
   if ignore[slime.action:get()] or ignore[hand.action:get()] then
     return
   end
+
+  hand.velocity.x, hand.velocity.y = 0, 0
+  slime.velocity.x, slime.velocity.y = 0, 0
+  slime.reflection:unset()
 
   if statemanager:player(Player.one):on(Controller.up) then
     slime.velocity.y = -80
@@ -164,17 +145,6 @@ function loop()
     slime.reflection:set(Reflection.horizontal)
   elseif statemanager:player(Player.one):on(Controller.right) then
     slime.velocity.x = 80
-  end
-
-  if statemanager:player(Player.one):on(Controller.cross) then
-    if not keystate[1] then
-      keystate[1] = true
-      print("HIT!!!!")
-      hand.action:set("injury")
-      slime.action:unset()
-    else
-      keystate[1] = false
-    end
   end
 
   local action = "idle"
@@ -197,15 +167,6 @@ function loop()
     hand.velocity.x = -80
   elseif statemanager:player(Player.two):on(Controller.right) then
     hand.velocity.x = 80
-  end
-
-  if statemanager:player(Player.two):on(Controller.cross) then
-    if not keystate[Controller.cross] then
-      keystate[Controller.cross] = true
-      hand.action:set("attack")
-    else
-      keystate[Controller.cross] = false
-    end
   end
 end
 
