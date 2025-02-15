@@ -11,7 +11,7 @@ local timemanager
 local overlay
 
 local keystate = {}
-local ignore = { stun = true, splaft = true, injury = true }
+local ignore = { atack = true, stun = true, splaft = true, injury = true }
 
 local hand
 local slime
@@ -114,6 +114,10 @@ function setup()
 end
 
 function loop()
+  hand.velocity.x, hand.velocity.y = 0, 0
+  slime.velocity.x, slime.velocity.y = 0, 0
+  slime.reflection:unset()
+
   if statemanager:collides(slime, hand) then
     if statemanager:player(Player.one):on(Controller.cross) then
       if not keystate[Player.one] then
@@ -129,10 +133,6 @@ function loop()
   if ignore[slime.action:get()] or ignore[hand.action:get()] then
     return
   end
-
-  hand.velocity.x, hand.velocity.y = 0, 0
-  slime.velocity.x, slime.velocity.y = 0, 0
-  slime.reflection:unset()
 
   if statemanager:player(Player.one):on(Controller.up) then
     slime.velocity.y = -80
