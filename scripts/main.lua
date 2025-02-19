@@ -1,11 +1,19 @@
 ---@diagnostic disable: undefined-global, undefined-field, lowercase-global
+_G.engine = EngineFactory.new()
+    :with_title("Slime")
+    :with_width(1920)
+    :with_height(1080)
+    :with_scale(3.0)
+    :with_gravity(9.8)
+    :with_fullscreen(false)
+    :create()
 
-local fontfactory
-local scenemanager
-local soundmanager
-local entitymanager
-local statemanager
-local overlay
+local fontfactory = engine:fontfactory()
+local scenemanager = engine:scenemanager()
+local soundmanager = engine:soundmanager()
+local entitymanager = engine:entitymanager()
+local statemanager = engine:statemanager()
+local overlay = engine:overlay()
 
 local keystate = {}
 local ignore = { atack = true, stun = true, splaft = true, injury = true }
@@ -21,23 +29,16 @@ local slime_seq = {
 }
 
 function setup()
-  _G.engine = EngineFactory.new()
-      :with_title("Slime")
-      :with_width(1920)
-      :with_height(1080)
-      :with_scale(3.0)
-      :with_gravity(9.8)
-      :with_fullscreen(false)
-      :create()
+  -- _G.engine     = EngineFactory.new()
+  --     :with_title("Slime")
+  --     :with_width(1920)
+  --     :with_height(1080)
+  --     :with_scale(3.0)
+  --     :with_gravity(9.8)
+  --     :with_fullscreen(false)
+  --     :create()
 
-  entitymanager = engine:entitymanager()
-  fontfactory = engine:fontfactory()
-  scenemanager = engine:scenemanager()
-  soundmanager = engine:soundmanager()
-  statemanager = engine:statemanager()
-  overlay = engine:overlay()
-
-  score = overlay:create(WidgetType.label)
+  score      = overlay:create(WidgetType.label)
   score.font = fontfactory:get("fixedsys")
   score:set("Score 9999", 540, 10)
 
@@ -51,19 +52,20 @@ function setup()
     end
   end)
   slime:on_animationfinished(function(self, name)
-    local next = slime_seq[name]
-    if next then
-      slime.action:set(next)
+    local nextAction = slime_seq[name]
+    if nextAction then
+      slime.action:set(nextAction)
     end
   end)
 
   hand = entitymanager:spawn("hand")
   hand.action:set("idle")
   hand.placement:set(0, 0)
-
   hand:on_animationfinished(function(self)
-    hand.action:set("idle")
-    slime.action:set("idle")
+    local idle = "idle"
+    for _, object in ipairs({ hand, slime }) do
+      object.action:set(idle)
+    end
   end)
 
   scenemanager:set("default")
@@ -78,8 +80,21 @@ function loop()
     if statemanager:player(Player.one):on(Controller.cross) then
       if not keystate[Player.one] then
         keystate[Player.one] = true
-        hand.action:set("attack")
-        slime.action:set("splaft")
+        local actions = {
+          [hand] = "attack",
+          [slime] = "splaft"
+        }
+        for object, action in pairs(actions) do
+          object.action:set(action)
+        end
+
+        local degrees = math.random(0, 35) * 10
+        local radians = math.rad(degrees)
+        local distance = math.random(0, 10) * 10
+        local dx = math.cos(radians) * distance
+        local dy = math.sin(radians) * distance
+        local pos = slime.placement:get()
+        slime.placement:set(pos.x + dx, pos.y + dy)
       else
         keystate[Player.one] = false
       end
@@ -111,7 +126,6 @@ function loop()
   elseif slime.velocity.x ~= 0 then
     action = "side"
   end
-
   slime.action:set(action)
 
   if statemanager:player(Player.two):on(Controller.up) then
@@ -119,6 +133,7 @@ function loop()
   elseif statemanager:player(Player.two):on(Controller.down) then
     hand.velocity.y = 80
   end
+
   if statemanager:player(Player.two):on(Controller.left) then
     hand.velocity.x = -80
   elseif statemanager:player(Player.two):on(Controller.right) then
