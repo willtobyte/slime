@@ -20,8 +20,7 @@ local ignore = { atack = true, stun = true, splaft = true, injury = true }
 
 local hand
 local slime
-
-local score
+local label
 
 local slime_seq = {
   stun = "idle",
@@ -29,9 +28,9 @@ local slime_seq = {
 }
 
 function setup()
-  score      = overlay:create(WidgetType.label)
-  score.font = fontfactory:get("fixedsys")
-  score:set("Score 9999", 540, 10)
+  label      = overlay:create(WidgetType.label)
+  label.font = fontfactory:get("fixedsys")
+  label:set("Score 0", 540, 10)
 
   slime = entitymanager:spawn("slime")
   slime.action:set("idle")
@@ -58,7 +57,10 @@ function setup()
       object.action:set(idle)
     end
   end)
-
+  hand.kv:set("score", 0)
+  hand.kv:subscribe("score", function(value)
+    label:set("Score " .. value)
+  end)
   scenemanager:set("default")
 end
 
@@ -79,13 +81,18 @@ function loop()
           object.action:set(action)
         end
 
+        hand.kv:set("score", hand.kv:get("score") + 10)
+
         local degrees = math.random(0, 35) * 10
         local radians = math.rad(degrees)
+
         local distance = math.random(0, 10) * 10
         local dx = math.cos(radians) * distance
         local dy = math.sin(radians) * distance
-        local pos = slime.placement:get()
-        slime.placement:set(pos.x + dx, pos.y + dy)
+
+        local p = slime.placement:get()
+
+        slime.placement:set(p.x + dx, p.y + dy)
       else
         keystate[Player.one] = false
       end
