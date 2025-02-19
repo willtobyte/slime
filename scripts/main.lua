@@ -29,15 +29,6 @@ local slime_seq = {
 }
 
 function setup()
-  -- _G.engine     = EngineFactory.new()
-  --     :with_title("Slime")
-  --     :with_width(1920)
-  --     :with_height(1080)
-  --     :with_scale(3.0)
-  --     :with_gravity(9.8)
-  --     :with_fullscreen(false)
-  --     :create()
-
   score      = overlay:create(WidgetType.label)
   score.font = fontfactory:get("fixedsys")
   score:set("Score 9999", 540, 10)
