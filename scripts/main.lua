@@ -76,9 +76,9 @@ function loop()
   slime.reflection:unset()
 
   if statemanager:collides(slime, hand) then
-    if statemanager:player(Player.one):on(Controller.cross) then
-      if not keystate[Player.one] then
-        keystate[Player.one] = true
+    if statemanager:player(Player.two):on(Controller.cross) then
+      if not keystate[Player.two] then
+        keystate[Player.two] = true
         local actions = {
           [hand] = "attack",
           [slime] = "splaft"
