@@ -100,7 +100,7 @@ function loop()
 
         slime.placement:set(p.x + dx, p.y + dy)
       else
-        keystate[Player.one] = false
+        keystate[Player.two] = false
       end
     end
   end
