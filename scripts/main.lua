@@ -60,6 +60,12 @@ function setup()
   hand.kv:set("score", 0)
   hand.kv:subscribe("score", function(value)
     label:set("Score " .. value)
+
+    if value > 30 then
+      slime.action:unset()
+      hand.action:set("injury")
+      hand.kv:set("score", 0)
+    end
   end)
   scenemanager:set("default")
 end
