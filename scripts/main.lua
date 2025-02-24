@@ -103,16 +103,16 @@ function loop()
     return
   end
 
-  if statemanager:player(Player.one):on(Controller.up) then
+  if statemanager:player(Player.two):on(Controller.up) then
     slime.velocity.y = -80
-  elseif statemanager:player(Player.one):on(Controller.down) then
+  elseif statemanager:player(Player.two):on(Controller.down) then
     slime.velocity.y = 80
   end
 
-  if statemanager:player(Player.one):on(Controller.left) then
+  if statemanager:player(Player.two):on(Controller.left) then
     slime.velocity.x = -80
     slime.reflection:set(Reflection.horizontal)
-  elseif statemanager:player(Player.one):on(Controller.right) then
+  elseif statemanager:player(Player.two):on(Controller.right) then
     slime.velocity.x = 80
   end
 
@@ -126,15 +126,15 @@ function loop()
   end
   slime.action:set(action)
 
-  if statemanager:player(Player.two):on(Controller.up) then
+  if statemanager:player(Player.one):on(Controller.up) then
     hand.velocity.y = -80
-  elseif statemanager:player(Player.two):on(Controller.down) then
+  elseif statemanager:player(Player.one):on(Controller.down) then
     hand.velocity.y = 80
   end
 
-  if statemanager:player(Player.two):on(Controller.left) then
+  if statemanager:player(Player.one):on(Controller.left) then
     hand.velocity.x = -80
-  elseif statemanager:player(Player.two):on(Controller.right) then
+  elseif statemanager:player(Player.one):on(Controller.right) then
     hand.velocity.x = 80
   end
 end
