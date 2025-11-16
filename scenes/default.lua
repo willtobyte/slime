@@ -28,11 +28,8 @@ function scene.on_loop(delta)
 
   pool.slime.reflection = Reflection.none
 
-  local colliding = statemanager:collides(pool.slime, pool.hand)
-  -- print("colliding " .. tostring(colliding))
+  local colliding = world:collides(pool.slime, pool.hand)
   local pressing = statemanager:player(Player.one):on(Controller.south)
-  --print("pressing " .. tostring(pressing))
-
   if colliding then
     if pressing then
       if not keystate[Player.one] then
