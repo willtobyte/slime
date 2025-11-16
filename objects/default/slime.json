@@ -1,5 +1,5 @@
 {
-	"spritesheet": "blobs/slime.png",
+	"spritesheet": "blobs/default/slime.png",
 	"scale": 1,
 	"size": {
 		"width": 236,
@@ -7,15 +7,17 @@
 	},
 	"animations": {
 		"down": {
-			"hitbox": {
-				"x": 96,
-				"y": 96,
-				"width": 64,
-				"height": 64
+			"bounds": {
+				"rectangle": {
+					"x": 96,
+					"y": 96,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 189,
 						"width": 70,
@@ -28,7 +30,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 578,
 						"width": 74,
@@ -41,7 +43,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 77,
 						"y": 578,
 						"width": 76,
@@ -54,7 +56,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 155,
 						"y": 578,
 						"width": 74,
@@ -67,7 +69,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 714,
 						"width": 76,
@@ -80,7 +82,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 646,
 						"width": 74,
@@ -93,7 +95,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 77,
 						"y": 646,
 						"width": 76,
@@ -106,7 +108,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 155,
 						"y": 646,
 						"width": 76,
@@ -121,15 +123,17 @@
 			]
 		},
 		"idle": {
-			"hitbox": {
-				"x": 96,
-				"y": 96,
-				"width": 64,
-				"height": 64
+			"bounds": {
+				"rectangle": {
+					"x": 96,
+					"y": 96,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
-					"rect": {
+					"rectangle": {
 						"x": 73,
 						"y": 189,
 						"width": 71,
@@ -142,7 +146,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 146,
 						"y": 189,
 						"width": 71,
@@ -155,7 +159,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 63,
 						"width": 71,
@@ -168,7 +172,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 74,
 						"y": 1,
 						"width": 71,
@@ -181,7 +185,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 74,
 						"y": 63,
 						"width": 71,
@@ -194,7 +198,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 146,
 						"y": 189,
 						"width": 71,
@@ -207,7 +211,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 73,
 						"y": 189,
 						"width": 71,
@@ -220,7 +224,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 253,
 						"width": 71,
@@ -233,7 +237,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 147,
 						"y": 63,
 						"width": 71,
@@ -246,7 +250,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 147,
 						"y": 1,
 						"width": 71,
@@ -259,7 +263,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 126,
 						"width": 71,
@@ -272,7 +276,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 253,
 						"width": 71,
@@ -287,15 +291,17 @@
 			]
 		},
 		"side": {
-			"hitbox": {
-				"x": 96,
-				"y": 96,
-				"width": 64,
-				"height": 64
+			"bounds": {
+				"rectangle": {
+					"x": 96,
+					"y": 96,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1,
 						"width": 71,
@@ -308,7 +314,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 74,
 						"y": 126,
 						"width": 72,
@@ -321,7 +327,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 74,
 						"y": 253,
 						"width": 75,
@@ -334,7 +340,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 75,
 						"y": 381,
 						"width": 76,
@@ -347,7 +353,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 151,
 						"y": 253,
 						"width": 76,
@@ -360,7 +366,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 153,
 						"y": 381,
 						"width": 75,
@@ -373,7 +379,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 317,
 						"width": 75,
@@ -386,7 +392,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 446,
 						"width": 74,
@@ -401,10 +407,11 @@
 			]
 		},
 		"splaft": {
+			"oneshot": true,
+			"next": "stun",
 			"frames": [
 				{
-					"singleshoot": true,
-					"rect": {
+					"rectangle": {
 						"x": 78,
 						"y": 317,
 						"width": 70,
@@ -417,7 +424,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 945,
 						"width": 110,
@@ -430,7 +437,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 113,
 						"y": 945,
 						"width": 122,
@@ -443,7 +450,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1057,
 						"width": 160,
@@ -456,7 +463,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1192,
 						"width": 190,
@@ -469,7 +476,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1346,
 						"width": 234,
@@ -482,7 +489,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1192,
 						"width": 190,
@@ -495,7 +502,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1057,
 						"width": 160,
@@ -508,7 +515,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 113,
 						"y": 945,
 						"width": 122,
@@ -521,7 +528,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 945,
 						"width": 110,
@@ -536,10 +543,11 @@
 			]
 		},
 		"stun": {
+			"oneshot": true,
+			"next": "idle",
 			"frames": [
 				{
-					"singleshoot": true,
-					"rect": {
+					"rectangle": {
 						"x": 79,
 						"y": 714,
 						"width": 70,
@@ -552,7 +560,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 151,
 						"y": 714,
 						"width": 74,
@@ -565,7 +573,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 865,
 						"width": 74,
@@ -578,7 +586,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 788,
 						"width": 74,
@@ -591,7 +599,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 77,
 						"y": 788,
 						"width": 70,
@@ -604,7 +612,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 77,
 						"y": 865,
 						"width": 74,
@@ -617,7 +625,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 153,
 						"y": 865,
 						"width": 74,
@@ -630,7 +638,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 149,
 						"y": 788,
 						"width": 74,
@@ -644,16 +652,136 @@
 				}
 			]
 		},
-		"up": {
-			"hitbox": {
-				"x": 96,
-				"y": 96,
-				"width": 64,
-				"height": 64
+		"atack": {
+			"oneshot": true,
+			"next": "idle",
+			"bounds": {
+				"rectangle": {
+					"x": 96,
+					"y": 96,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
-					"rect": {
+					"rectangle": {
+						"x": 150,
+						"y": 317,
+						"width": 72,
+						"height": 62
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 95
+					}
+				},
+				{
+					"rectangle": {
+						"x": 77,
+						"y": 446,
+						"width": 72,
+						"height": 63
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 94
+					}
+				},
+				{
+					"rectangle": {
+						"x": 1,
+						"y": 381,
+						"width": 72,
+						"height": 62
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 93
+					}
+				},
+				{
+					"rectangle": {
+						"x": 1,
+						"y": 511,
+						"width": 72,
+						"height": 64
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 90
+					}
+				},
+				{
+					"rectangle": {
+						"x": 149,
+						"y": 511,
+						"width": 72,
+						"height": 65
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 88
+					}
+				},
+				{
+					"rectangle": {
+						"x": 75,
+						"y": 511,
+						"width": 72,
+						"height": 64
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 89
+					}
+				},
+				{
+					"rectangle": {
+						"x": 151,
+						"y": 446,
+						"width": 72,
+						"height": 63
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 91
+					}
+				},
+				{
+					"rectangle": {
+						"x": 148,
+						"y": 126,
+						"width": 72,
+						"height": 61
+					},
+					"duration": 50,
+					"offset": {
+						"x": 92,
+						"y": 93
+					}
+				}
+			]
+		},
+		"up": {
+			"bounds": {
+				"rectangle": {
+					"x": 96,
+					"y": 96,
+					"width": 64,
+					"height": 64
+				}
+			},
+			"frames": [
+				{
+					"rectangle": {
 						"x": 150,
 						"y": 317,
 						"width": 72,
@@ -666,7 +794,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 77,
 						"y": 446,
 						"width": 72,
@@ -679,7 +807,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 381,
 						"width": 72,
@@ -692,7 +820,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 511,
 						"width": 72,
@@ -705,7 +833,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 149,
 						"y": 511,
 						"width": 72,
@@ -718,7 +846,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 75,
 						"y": 511,
 						"width": 72,
@@ -731,7 +859,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 151,
 						"y": 446,
 						"width": 72,
@@ -744,7 +872,7 @@
 					}
 				},
 				{
-					"rect": {
+					"rectangle": {
 						"x": 148,
 						"y": 126,
 						"width": 72,

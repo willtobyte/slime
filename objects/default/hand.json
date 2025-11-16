@@ -1,5 +1,5 @@
 {
-	"spritesheet": "blobs/hand.png",
+	"spritesheet": "blobs/default/hand.png",
 	"scale": 1,
 	"size": {
 		"width": 986,
@@ -7,21 +7,24 @@
 	},
 	"animations": {
 		"attack": {
-			"hitbox": {
-				"x": 200,
-				"y": 180,
-				"width": 64,
-				"height": 64
+			"oneshot": true,
+			"next": "idle",
+			"bounds": {
+				"rectangle": {
+					"x": 200,
+					"y": 180,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
-					"singleshoot": true,
 					"duration": 100,
 					"offset": {
 						"x": 154,
 						"y": 125
 					},
-					"rect": {
+					"rectangle": {
 						"x": 237,
 						"y": 486,
 						"width": 233,
@@ -34,7 +37,7 @@
 						"x": 160,
 						"y": 141
 					},
-					"rect": {
+					"rectangle": {
 						"x": 476,
 						"y": 229,
 						"width": 227,
@@ -47,7 +50,7 @@
 						"x": 170,
 						"y": 148
 					},
-					"rect": {
+					"rectangle": {
 						"x": 257,
 						"y": 229,
 						"width": 217,
@@ -60,7 +63,7 @@
 						"x": 168,
 						"y": 155
 					},
-					"rect": {
+					"rectangle": {
 						"x": 727,
 						"y": 1,
 						"width": 219,
@@ -73,7 +76,7 @@
 						"x": 126,
 						"y": 101
 					},
-					"rect": {
+					"rectangle": {
 						"x": 597,
 						"y": 2551,
 						"width": 302,
@@ -86,7 +89,7 @@
 						"x": 132,
 						"y": 109
 					},
-					"rect": {
+					"rectangle": {
 						"x": 626,
 						"y": 2292,
 						"width": 289,
@@ -99,7 +102,7 @@
 						"x": 145,
 						"y": 129
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 229,
 						"width": 254,
@@ -112,7 +115,7 @@
 						"x": 150,
 						"y": 135
 					},
-					"rect": {
+					"rectangle": {
 						"x": 484,
 						"y": 1,
 						"width": 241,
@@ -125,7 +128,7 @@
 						"x": 140,
 						"y": 137
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1,
 						"width": 246,
@@ -138,7 +141,7 @@
 						"x": 55,
 						"y": 60
 					},
-					"rect": {
+					"rectangle": {
 						"x": 643,
 						"y": 2822,
 						"width": 342,
@@ -151,7 +154,7 @@
 						"x": 26,
 						"y": 0
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 3146,
 						"width": 400,
@@ -164,7 +167,7 @@
 						"x": 4,
 						"y": 1
 					},
-					"rect": {
+					"rectangle": {
 						"x": 403,
 						"y": 3146,
 						"width": 444,
@@ -177,7 +180,7 @@
 						"x": 153,
 						"y": 137
 					},
-					"rect": {
+					"rectangle": {
 						"x": 249,
 						"y": 1,
 						"width": 233,
@@ -187,11 +190,13 @@
 			]
 		},
 		"idle": {
-			"hitbox": {
-				"x": 200,
-				"y": 180,
-				"width": 64,
-				"height": 64
+			"bounds": {
+				"rectangle": {
+					"x": 200,
+					"y": 180,
+					"width": 64,
+					"height": 64
+				}
 			},
 			"frames": [
 				{
@@ -200,7 +205,7 @@
 						"x": 154,
 						"y": 125
 					},
-					"rect": {
+					"rectangle": {
 						"x": 237,
 						"y": 486,
 						"width": 233,
@@ -213,7 +218,7 @@
 						"x": 154,
 						"y": 128
 					},
-					"rect": {
+					"rectangle": {
 						"x": 705,
 						"y": 229,
 						"width": 233,
@@ -226,7 +231,7 @@
 						"x": 153,
 						"y": 129
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 486,
 						"width": 234,
@@ -239,7 +244,7 @@
 						"x": 154,
 						"y": 128
 					},
-					"rect": {
+					"rectangle": {
 						"x": 705,
 						"y": 229,
 						"width": 233,
@@ -249,15 +254,16 @@
 			]
 		},
 		"injury": {
+			"oneshot": true,
+			"next": "idle",
 			"frames": [
 				{
-					"singleshoot": true,
 					"duration": 100,
 					"offset": {
 						"x": 222,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 633,
 						"y": 1776,
 						"width": 315,
@@ -270,7 +276,7 @@
 						"x": 214,
 						"y": 58
 					},
-					"rect": {
+					"rectangle": {
 						"x": 318,
 						"y": 2822,
 						"width": 323,
@@ -283,7 +289,7 @@
 						"x": 222,
 						"y": 72
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2822,
 						"width": 315,
@@ -296,7 +302,7 @@
 						"x": 238,
 						"y": 83
 					},
-					"rect": {
+					"rectangle": {
 						"x": 296,
 						"y": 2551,
 						"width": 299,
@@ -309,7 +315,7 @@
 						"x": 247,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2034,
 						"width": 290,
@@ -322,7 +328,7 @@
 						"x": 245,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 293,
 						"y": 2034,
 						"width": 292,
@@ -335,7 +341,7 @@
 						"x": 244,
 						"y": 87
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2551,
 						"width": 293,
@@ -348,7 +354,7 @@
 						"x": 247,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2034,
 						"width": 290,
@@ -361,7 +367,7 @@
 						"x": 245,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 293,
 						"y": 2034,
 						"width": 292,
@@ -374,7 +380,7 @@
 						"x": 244,
 						"y": 87
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2551,
 						"width": 293,
@@ -387,7 +393,7 @@
 						"x": 247,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2034,
 						"width": 290,
@@ -400,7 +406,7 @@
 						"x": 245,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 293,
 						"y": 2034,
 						"width": 292,
@@ -413,7 +419,7 @@
 						"x": 244,
 						"y": 87
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2551,
 						"width": 293,
@@ -426,7 +432,7 @@
 						"x": 222,
 						"y": 72
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 2822,
 						"width": 315,
@@ -439,7 +445,7 @@
 						"x": 214,
 						"y": 58
 					},
-					"rect": {
+					"rectangle": {
 						"x": 318,
 						"y": 2822,
 						"width": 323,
@@ -452,7 +458,7 @@
 						"x": 222,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 633,
 						"y": 1776,
 						"width": 315,
@@ -465,7 +471,7 @@
 						"x": 224,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 318,
 						"y": 1776,
 						"width": 313,
@@ -478,7 +484,7 @@
 						"x": 222,
 						"y": 91
 					},
-					"rect": {
+					"rectangle": {
 						"x": 1,
 						"y": 1776,
 						"width": 315,

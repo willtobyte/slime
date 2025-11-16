@@ -1,5 +1,15 @@
 {
-	"background": "blobs/background.png",
+	"background": "blobs/default/background.png",
 	"width": 640,
-	"height": 360
+	"height": 360,
+	"objects": [
+		{
+			"kind": "slime",
+			"name": "slime"
+		},
+		{
+			"kind": "hand",
+			"name": "hand"
+		}
+	]
 }
