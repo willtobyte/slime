@@ -7,11 +7,11 @@ local hits = 0
 local game_over = false
 
 function scene.on_enter()
-  pool.slime = scene:get("slime", SceneType.object)
+  pool.slime = scene:get("slime", SceneKind.object)
   pool.slime.action = "idle"
   pool.slime.placement = { x = 0, y = 0 }
 
-  pool.hand = scene:get("hand", SceneType.object)
+  pool.hand = scene:get("hand", SceneKind.object)
   pool.hand.action = "idle"
   pool.hand.placement = { x = 0, y = 0 }
 
